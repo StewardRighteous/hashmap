@@ -48,12 +48,18 @@ class HashMap {
 
   length() {
     let length = 0;
-    for (let i = 0; i < this.bucket.length; i++) {
+    for (let i = 0; i < this.capacity; i++) {
       if (!this.bucket[i]) {
         continue;
       }
       length++;
     }
     return length;
+  }
+
+  clear(){
+    for(let i=0; i< this.capacity; i++){
+        this.bucket[i] = null;
+    }
   }
 }
