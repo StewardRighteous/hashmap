@@ -1,6 +1,7 @@
 class HashMap {
   loadFactor = 0.75;
   capacity = 16;
+  bucket = [];
 
   constructor(capacity) {
     this.capacity = capacity;
@@ -13,5 +14,10 @@ class HashMap {
       hashCode = primeNumber * hashCode + key.charCodeAt(i);
     }
     return hashCode % this.capacity;
+  }
+
+  set(key, value){
+    let index = hash(key);
+    this.bucket[index] = value;
   }
 }
