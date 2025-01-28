@@ -18,7 +18,7 @@ class HashMap {
 
   set(key, value) {
     let index = this.hash(key);
-    this.bucket[index] = value;
+    this.bucket[index] = { key: key, value: value };
   }
 
   get(key) {
@@ -57,9 +57,20 @@ class HashMap {
     return length;
   }
 
-  clear(){
-    for(let i=0; i< this.capacity; i++){
-        this.bucket[i] = null;
+  clear() {
+    for (let i = 0; i < this.capacity; i++) {
+      this.bucket[i] = null;
     }
+  }
+
+  keys() {
+    let keys = [];
+    for (let i = 0; i < this.capacity; i++) {
+      if (!this.bucket[i]) {
+        continue;
+      }
+      keys.push(this.bucket[i].key);
+    }
+    return keys;
   }
 }
