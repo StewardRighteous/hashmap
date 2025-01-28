@@ -17,7 +17,15 @@ class HashMap {
   }
 
   set(key, value){
-    let index = hash(key);
+    let index = this.hash(key);
     this.bucket[index] = value;
+  }
+
+  get(key){
+    let index = this.hash(key);
+    if(!this.bucket[index]){
+        return null;
+    }
+    return this.bucket[index];
   }
 }
