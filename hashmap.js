@@ -84,4 +84,15 @@ class HashMap {
     }
     return values;
   }
+
+  entries() {
+    let entries = [];
+    for (let i = 0; i < this.capacity; i++) {
+      if (!this.bucket[i]) {
+        continue;
+      }
+      entries.push(this.bucket[i]);
+    }
+    return entries;
+  }
 }
