@@ -16,7 +16,19 @@ class HashMap {
     return hashCode % this.capacity;
   }
 
+  growBucket(){
+    let entries = this.entries();
+    this.clear();
+    this.capacity = (this.capacity * 2)-1;
+    for (entry in entries){
+        this.set(entry.key, entry.value);
+    }
+  }
+
   set(key, value) {
+    if(this.length > this.capacity * this.loadFactor){
+        this.growBucket();
+    }
     let index = this.hash(key);
     this.bucket[index] = { key: key, value: value };
   }
