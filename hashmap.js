@@ -36,4 +36,24 @@ class HashMap {
     }
     return true;
   }
+
+  remove(key) {
+    if (!this.has(key)) {
+      return false;
+    } else {
+      let index = this.hash(key);
+      this.bucket[index] = null;
+    }
+  }
+
+  length() {
+    let length = 0;
+    for (let i = 0; i < this.bucket.length; i++) {
+      if (!this.bucket[i]) {
+        continue;
+      }
+      length++;
+    }
+    return length;
+  }
 }
