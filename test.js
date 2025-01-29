@@ -17,8 +17,22 @@ test.set('lion', 'golden')
 
 console.log(test.length());
 
-test.set('moon', 'silver')
+test.set('moon', 'silver');
+test.set('night', 'black');
+test.set("grass","green")
+
 
 console.log(test.length());
 console.log(test.capacity);
+
+console.log(test.get('lion'));
+console.log(test.has('kite'));
+console.log(test.remove('kite'));
+console.log(test.length());
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
+
+console.log(test.clear());
+
 

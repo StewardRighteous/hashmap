@@ -54,6 +54,7 @@ export default class HashMap {
     } else {
       let index = this.hash(key);
       this.bucket[index] = null;
+      return true;
     }
   }
 
@@ -91,7 +92,7 @@ export default class HashMap {
       if (!this.bucket[i]) {
         continue;
       }
-      keys.push(this.bucket[i].value);
+      values.push(this.bucket[i].value);
     }
     return values;
   }
