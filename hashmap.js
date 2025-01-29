@@ -1,33 +1,32 @@
-class HashMap {
+export default class HashMap {
   loadFactor = 0.75;
-  capacity = 16;
+  capacity;
   bucket = [];
 
-  constructor(capacity) {
+  constructor(capacity = 16) {
     this.capacity = capacity;
   }
 
   hash(key) {
-    let hashCode = 0;
-    const primeNumber = 31;
-    for (let i = 0; i < key.length; i++) {
-      hashCode = primeNumber * hashCode + key.charCodeAt(i);
-    }
-    return hashCode % this.capacity;
+    let hashCode = key.charCodeAt(0);
+    let tableSize = this.capacity;
+    hashCode = hashCode % tableSize;
+    return hashCode;
   }
 
-  growBucket(){
+  growBucket() {
     let entries = this.entries();
     this.clear();
-    this.capacity = (this.capacity * 2)-1;
-    for (entry in entries){
-        this.set(entry.key, entry.value);
+    this.capacity = this.capacity * 2 - 1;
+    for (let entry of entries) {
+      this.set(entry.key, entry.value);
     }
   }
 
   set(key, value) {
-    if(this.length > this.capacity * this.loadFactor){
-        this.growBucket();
+    let load = this.capacity * this.loadFactor;
+    if (this.length() +1 > load) {
+      this.growBucket();
     }
     let index = this.hash(key);
     this.bucket[index] = { key: key, value: value };
